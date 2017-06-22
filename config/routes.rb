@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace 'rest' do
+    resources :books, only: %i[index create] do
+      collection do
+        get 'years'
+      end
+    end
+  end
 end

@@ -11,7 +11,6 @@ gem 'rails', '~> 5.1.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
-gem 'jbuilder', '~> 2.5'
 gem 'mysql2'
 
 group :development, :test do
