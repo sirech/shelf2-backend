@@ -8,3 +8,10 @@ PreCommit:
 
   HardTabs:
     enabled: true
+
+  RailsSchemaUpToDate:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+    command: ['bundle', 'exec', 'rubocop']
