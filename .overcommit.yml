@@ -6,6 +6,16 @@ PreCommit:
       - '**/*.js'
       - '**/*.jsx'
 
+  Flow:
+    enabled: true
+    description: 'Check typing with flow'
+    command: './node_modules/.bin/flow'
+    flags: ['--json']
+    parallelize: false
+    include:
+      - '**/*.js'
+      - '**/*.jsx'
+
   HardTabs:
     enabled: true
 
