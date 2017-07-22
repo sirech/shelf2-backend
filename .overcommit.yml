@@ -15,6 +15,14 @@ PreCommit:
   RuboCop:
     enabled: true
     command: ['bundle', 'exec', 'rubocop']
+    exclude: '.git-hooks/**/*.rb'
+
+  StyleLint:
+    enabled: true
+    description: 'Checking css files with stylelint'
+    command: './client/node_modules/.bin/stylelint'
+    flags: ['--formatter=json']
+    include: '**/*.css'
 
   TrailingWhitespace:
     enabled: true
