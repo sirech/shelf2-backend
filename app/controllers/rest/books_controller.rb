@@ -5,7 +5,7 @@ module Rest
       scope = scope.where(year: params[:year].to_i) if params[:year]
       @books = scope.all
 
-      render json: @books.as_json(except: %i[created_at updated_at])
+      render json: @books.as_json(except: %i[created_at updated_at description])
     end
 
     def create
