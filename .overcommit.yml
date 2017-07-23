@@ -3,8 +3,10 @@ PreCommit:
     enabled: true
     required_executable: './client/node_modules/.bin/eslint'
     include:
-      - '**/*.js'
-      - '**/*.jsx'
+      - '**/src/*.js'
+      - '**/src/*.jsx'
+    exclude:
+      - '**/flow-typed/*'
 
   Flow:
     enabled: true
@@ -13,8 +15,10 @@ PreCommit:
     flags: ['--json']
     parallelize: false
     include:
-      - '**/*.js'
-      - '**/*.jsx'
+      - '**/src/*.js'
+      - '**/src/*.jsx'
+    exclude:
+      - '**/flow-typed/*'
 
   HardTabs:
     enabled: true
