@@ -9,7 +9,7 @@ PreCommit:
       - 'client/flow-typed/*'
 
   Flow:
-    enabled: true
+    enabled: false
     description: 'Check typing with flow'
     command: './node_modules/.bin/flow'
     flags: ['--json']
