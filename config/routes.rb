@@ -6,4 +6,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/', controller: 'index', action: 'index'
+  get '/*rest', controller: 'index', action: 'index'
 end
