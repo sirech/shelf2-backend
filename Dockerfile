@@ -11,14 +11,20 @@ RUN gem install bundler
 
 WORKDIR $RAILS_ROOT
 
+# Install gems before copying files
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
+# Install packages before copying files
+COPY client/package.json client/package.json
+COPY client/yarn.lock client/yarn.lock
+RUN cd client && yarn
+
 COPY . .
 
-RUN cd client && yarn
 RUN cd client && yarn run build --production
+RUN gzip -rf client/build
 RUN cp -a client/build/. public/
 
 CMD exec rails s -b 0.0.0.0
