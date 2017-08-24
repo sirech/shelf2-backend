@@ -1,3 +1,3 @@
 task status: :environment do
-  raise unless Book.count.zero?
+  raise if Book.count.zero?
 end
