@@ -4,5 +4,5 @@ class Book < ActiveRecord::Base
   validates_numericality_of :year, greater_than_or_equal_to: 2000
   validates :stars, inclusion: { in: 1..5 }
 
-  enum category: %i(sociology software econ history other)
+  enum category: %i[sociology software econ history other]
 end
