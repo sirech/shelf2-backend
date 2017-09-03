@@ -157,6 +157,7 @@ GEM
       rubocop (>= 0.42.0)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
+    simple_command (0.0.9)
     slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -199,6 +200,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rspec
+  simple_command
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
