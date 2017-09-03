@@ -25,6 +25,7 @@ COPY . .
 
 RUN cd client && yarn run build --production
 RUN gzip -rfk client/build/static
+RUN rm -Rf public/*
 RUN cp -a client/build/. public/
 
 CMD exec rails s -b 0.0.0.0
