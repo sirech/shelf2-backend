@@ -1,5 +1,7 @@
 module Rest
   class BooksController < ApplicationController
+    before_action :authenticate!, only: %i[create]
+
     def index
       scope = Book.order(:title)
       scope = scope.where(year: params[:year].to_i) if params[:year]
@@ -13,7 +15,7 @@ module Rest
       valid = @book.save
 
       if valid
-        render json: @book.as_json(except: %i[created_at updated_at])
+        render json: @book.as_json(except: %i[created_at updated_at]), status: 201
       else
         render_invalid_record(@book.errors)
       end
