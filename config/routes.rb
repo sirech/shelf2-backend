@@ -5,6 +5,8 @@ Rails.application.routes.draw do
         get 'years'
       end
     end
+
+    resource :login, only: %i[create]
   end
 
   get '/', controller: 'index', action: 'index'
