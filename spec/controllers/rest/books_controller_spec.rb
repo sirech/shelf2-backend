@@ -68,4 +68,38 @@ describe Rest::BooksController, type: :controller do
                ])
     end
   end
+
+  describe '#create' do
+    subject { post :create, params: { format: :json, book: attributes_for(:book) } }
+
+    let(:book) { build(:book) }
+
+    context 'unauthorized' do
+      it 'returns a 401' do
+        subject
+        expect(response.status).to eq 401
+      end
+    end
+
+    context 'authorized' do
+      let(:headers) { { 'Authorization' => "Bearer #{token}" } }
+      let(:token) { JsonWebToken.encode(user_id: user.id) }
+      let!(:user) { create(:user) }
+
+      before do
+        request.headers.merge! headers
+      end
+
+      it 'returns a 201' do
+        subject
+        expect(response.status).to eq 201
+      end
+
+      it 'creates a new book' do
+        expect do
+          subject
+        end.to change { Book.count }.by(1)
+      end
+    end
+  end
 end
