@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170902215543) do
     t.string "checksum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_users_on_name"
   end
 
 end

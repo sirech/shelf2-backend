@@ -43,7 +43,7 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.0.6)
-    childprocess (0.6.3)
+    childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
@@ -63,7 +63,7 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.4)
-    iniparse (1.4.3)
+    iniparse (1.4.4)
     jwt (1.5.6)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -83,8 +83,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    overcommit (0.39.1)
-      childprocess (~> 0.6.3)
+    overcommit (0.41.0)
+      childprocess (~> 0.6, >= 0.6.3)
       iniparse (~> 1.4)
     parallel (1.11.2)
     parser (2.4.0.0)
@@ -206,4 +206,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
