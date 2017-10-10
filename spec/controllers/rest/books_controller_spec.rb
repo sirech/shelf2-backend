@@ -47,6 +47,38 @@ describe Rest::BooksController, type: :controller do
     end
   end
 
+  describe '#search' do
+    subject { get :search, params: { keyword: keyword, format: :json } }
+
+    let(:keyword) { 'book' }
+
+    it 'returns properly' do
+      subject
+      expect(response).to be_ok
+    end
+
+    it 'returns a list' do
+      subject
+      expect(json_response!).to be_a(Array)
+    end
+
+    it 'is empty if the title does not match' do
+      create(:book, title: 'somehing')
+
+      subject
+      expect(json_response!.count).to eq(0)
+    end
+
+    it 'returns every book that matches the keyword' do
+      create(:book, title: 'there is a book')
+      create(:book, title: 'book one')
+      create(:book, title: 'this book is good')
+
+      subject
+      expect(json_response!.count).to eq(3)
+    end
+  end
+
   describe '#years' do
     subject { get :years, params: { format: :json } }
 
@@ -83,7 +115,7 @@ describe Rest::BooksController, type: :controller do
 
     context 'authorized' do
       let(:headers) { { 'Authorization' => "Bearer #{token}" } }
-      let(:token) { JsonWebToken.encode(user_id: user.id) }
+      let(:token) { ::JsonWebToken.encode(user_id: user.id) }
       let!(:user) { create(:user) }
 
       before do
