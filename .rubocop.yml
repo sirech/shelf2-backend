@@ -3,16 +3,25 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - db/schema.rb
+    - db/seeds.rb
     - Gemfile
+    - Rakefile
+    - config/initializers/*.rb
 
 Documentation:
   Enabled: false
 
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
 Metrics/LineLength:
   Max: 100
 
-RSpec/NamedSubject:
-  Enabled: false
+RSpec/ExampleLength:
+  Max: 10
 
 RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
   Enabled: false

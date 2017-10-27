@@ -3,6 +3,8 @@ require 'json_web_token'
 
 describe JsonWebToken, type: :model do
   let(:payload) { { user_id: 42 } }
+
+  # rubocop:disable Metrics/LineLength
   let(:token) { 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0Mn0.nH_lWaJCKnuIomLHd533b4CnMryq3roBWb5ql8s9RCY' }
 
   describe '.encode' do
