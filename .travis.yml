@@ -1,12 +1,9 @@
-language: node_js
-node_js:
-  - 8
-before_install: cd client
-cache:
-  yarn: true
-  directories:
-    - node_modules
-script:
-  - npm run build
-  - npm test -- --coverage
-  - cat coverage/lcov.info | node_modules/.bin/coveralls
+language: ruby
+bundler_args: --without production
+cache: bundler
+jobs:
+  include:
+    - stage: 'Lint'
+      script: bundle exec rubocop
+    - stage: 'Test'
+      script: rake spec
