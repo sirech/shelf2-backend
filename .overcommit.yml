@@ -1,25 +1,4 @@
 PreCommit:
-  EsLint:
-    enabled: true
-    required_executable: './client/node_modules/.bin/eslint'
-    include:
-      - 'client/src/**/*.js'
-      - 'client/src/**/*.jsx'
-    exclude:
-      - 'client/flow-typed/*'
-
-  Flow:
-    enabled: false
-    description: 'Check typing with flow'
-    command: './node_modules/.bin/flow'
-    flags: ['--json']
-    parallelize: false
-    include:
-      - 'client/src/**/*.js'
-      - 'client/src/**/*.jsx'
-    exclude:
-      - 'client/flow-typed/*'
-
   HardTabs:
     enabled: true
 
@@ -30,13 +9,6 @@ PreCommit:
     enabled: true
     command: ['bundle', 'exec', 'rubocop']
     exclude: '.git-hooks/**/*.rb'
-
-  StyleLint:
-    enabled: true
-    description: 'Checking css files with stylelint'
-    command: './client/node_modules/.bin/stylelint'
-    flags: ['--formatter=json']
-    include: '**/*.css'
 
   TrailingWhitespace:
     enabled: true
