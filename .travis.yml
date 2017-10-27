@@ -6,4 +6,5 @@ jobs:
     - stage: 'Lint'
       script: bundle exec rubocop -c .rubocop.yml
     - stage: 'Test'
+      before_script: 'RAILS_ENV=test bundle exec rails db:create'
       script: rake spec
