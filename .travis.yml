@@ -4,6 +4,6 @@ cache: bundler
 jobs:
   include:
     - stage: 'Lint'
-      script: bundle exec rubocop
+      script: bundle exec rubocop -c .rubocop.yml
     - stage: 'Test'
       script: rake spec
