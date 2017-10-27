@@ -36,6 +36,8 @@ group :development do
   gem 'overcommit'
   gem 'rubocop'
   gem 'rubocop-rspec'
+
+  gem 'coveralls', require: false
 end
 
 group :test do
