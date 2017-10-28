@@ -1,4 +1,4 @@
-FROM starefossen/ruby-node
+FROM ruby:2.4.2
 
 RUN apt-get update && apt-get install -qq -y build-essential libossp-uuid-dev libmysqlclient-dev --fix-missing --no-install-recommends
 
@@ -16,14 +16,6 @@ COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
-# Install packages before copying files
-COPY client/package.json client/package.json
-COPY client/yarn.lock client/yarn.lock
-RUN cd client && yarn
-
 COPY . .
 
-RUN cd client && yarn run build --production
-RUN gzip -rfk client/build/static
-
-CMD rm -Rf public/* && cp -a client/build/. public/ && exec rails s -b 0.0.0.0
+CMD exec rails s -b 0.0.0.0

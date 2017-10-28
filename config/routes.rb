@@ -9,7 +9,4 @@ Rails.application.routes.draw do
 
     resource :login, only: %i[create]
   end
-
-  get '/', controller: 'index', action: 'index'
-  get '/*rest', controller: 'index', action: 'index'
 end
