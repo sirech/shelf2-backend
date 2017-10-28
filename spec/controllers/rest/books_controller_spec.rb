@@ -132,6 +132,11 @@ describe Rest::BooksController, type: :controller do
           subject
         end.to change { Book.count }.by(1)
       end
+
+      it 'returns a 422 if the book is invalid' do
+        post :create, params: { format: :json, book: { name: '' } }
+        expect(response.status).to be 422
+      end
     end
   end
 end
