@@ -1,10 +1,24 @@
 language: ruby
-bundler_args: --without production
+bundler_args: "--without production"
 cache: bundler
 jobs:
   include:
-    - stage: 'Lint'
-      script: bundle exec rubocop -c .rubocop.yml
-    - stage: 'Test'
-      before_script: 'RAILS_ENV=test bundle exec rails db:create'
-      script: bundle exec rake spec
+  - stage: Lint
+    script: bundle exec rubocop -c .rubocop.yml
+  - stage: Test
+    before_script: RAILS_ENV=test bundle exec rails db:create
+    script: bundle exec rake spec
+  - stage: Deploy
+    before_deploy:
+    - openssl aes-256-cbc -K $encrypted_f01d31c5d2d1_key -iv $encrypted_f01d31c5d2d1_iv
+      -in deploy_rsa.enc -out deploy_rsa -d
+    script: skip
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: ssh -i deploy_rsa $USER@$HOST "sh ${PATH}/bin/update"
+env:
+  global:
+  - secure: VsL1DRbHJ8fLo46xJFLIcy1rONpmJYd/gTXeS8ifpUZnxjh+fEn611AQQhAHcKHJyQf4tBV8tJ+QAi6cbsVtA898wrVxopDY3E6OrMCoJWdX9NpWdNZTHcOadoJWF+LyJcZezuKONTqFOkcd196IJtrIjlCeGA4WYH4wyNi8LIex+iMO0AehOGAgBn9dxFGtBtdFaGbT6zTnq/x0DeabzXeBeK0FLKAMnhAULAhuSxrqct11Rspm86Bo+oByBLQyMIR0KNgxLpH4u9It6DXflE/4+FzYi8/Hxbox0Un7CBE0jbQXDhnEfRA6/fXPOGcuyQDTICq6o8IHr1zUHwVSOCeMEvyQE3fXsz/xnoQXTi2wCc0ATyNGTgNsY5uRSq0wWp+aBa+aln5PJmrznix42IkLNiku+mNH+QLyPamQ2xsbx9lJzo4T8mKaCIr2o7EnPPhU8BvLdPlTk+mB22Ad1MlBBh8zCpa8nINWpcdSGsEw2oPrgBVjadZ6u0CzyCF/AlbV+WovlM12jxwQzjtC4OxrP94226VfoUPJ2bjFvKhN/fwjrs15wDbSxBD1svufVi/24S5DjbluI1HWkWphZ5S3qGwIz2nM76gInOQcGkIvuvrbqzaTX5zRDWT9u0Eb3JObbGNmhHmsjia51ivwMBHiGaakApOkYTZPNhGxoRo=
+  - secure: JKRHj5Jjm+OggB3YXmgonzUHBOKaDOTsVoyuEPjezuchsFN5/mnvMAE/wvLmRfB8QG9zg8Ulk66ztcFG/IpZIPf/0z4nvb55RkvcYNTOddsZgIJXpszPD11cazQrgTeR90PMSO4V76iqEBMI2pDtpCzDDnHOpLOis3+7OP3asmDYU6Xz6D8081wfFe0Tpp9LRpXF+GrbBPY6m1VLhIUPmyJemofiJ98444XANbD/oOMuo+dhokfnWCfkjUej8YwkMVrOOFVYld6QrDILfO2/MmJkxhXOiqPnlY27nI93/CpsUO8y/aHZAVCNgjCJZIipqAup2Dp9AYQPL0vjGyLihP9kps/FgzF/ZBSElGSC1WUtgFvUL4ZZu33ac4Y4rq9lmBTbFcBrDT7pzyeIDpM5vUecNx9xVxn3u/LSNzWmwe94cIRPRY8aXIsYUkmbUhvrB/DozYsapXXQcpLKTUGUTLfJ8XPh4h5i3zWV2aE1dLx0Jzh4ZP76vXNzSp5qksFetr+e9R/t9SAaYuHW/gGHOLje40vsmlIwfdV5A6eQm7v4FGNNlCqZfuSogGZ5561Lrqs+xxnsOseoXHTcifBRcgg5i/dsnjRfXvOvq755CjpDAQCd6rPTk13TR9cxgxUfjMAydARYn71bU3CRdIcLRjQ6pDWotRqjmMGsWGAJSzk=
+  - secure: EYFCe29CJO2bZsGwU8Kr7Ngis3h5WxTJPrAB+G4sYipgFgKUkpAtzmj9IF7Z06p0lWvAWsZxIDMaKMh0n+e8gCPfWVA8ad88wOgkJ6s7KJMa8qjkvRnyDopT258t1jT/ry8zGFhTZJdt8yBRVk0Nr123YGG8/B+WVC5VoY1pXTDETcflkQ51iL6vgN1y3XfOtDHrWQp779DdkLLnJYebyh5J2WwgKXB4FoKsmyQLCvcSN0Q8cqTCD8rJW35Mt3hFdie9FrE8pfDTtZsxhBktl0ELYn5GbUqXeNzVn6ZVzvSaifkS3DYgANKRpS3EHpTtmsSpzM1wCHakOwhMe4GQe24J31SYPEWswqLFF+tfdTq9f6jDB0+PJPxMyp2l4VSltS/5ScP3DY70D0sb9px2ZMz+sw+eCVyz30rmgZ4HM4TULwe+5wl3L7aDxz0F1gM4h4Q/uOHmSIyTFZf338wEfaDIvskAPCA+R2jlneTBZyx1hxDsMMTfqCFfHF5U+RM3AivPU9GatHZ0dUqZPitBSKvwl3SdvUkfK8HJtS4prO3awMAe8z7PWf6RPjixqvmSBJVb/9aYwBRotE4ik/HiraZ5iOoNJQ3/KmgcC949Q0ebCv016f48HrBxkfa37uFd6bOqohmHqWL8pPYmKAmsCuJRclSBALZeZULCl1J5BqE=
