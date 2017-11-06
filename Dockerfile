@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.4.2-slim
 
 RUN apt-get update && apt-get install -qq -y build-essential libossp-uuid-dev libmysqlclient-dev --fix-missing --no-install-recommends
 
