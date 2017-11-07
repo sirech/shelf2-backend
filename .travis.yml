@@ -11,6 +11,9 @@ jobs:
   - stage: Test
     before_script: RAILS_ENV=test bundle exec rails db:create
     script: bundle exec rake spec
+  - stage: Pact
+    before_script: RAILS_ENV=test bundle exec rails db:create
+    script: RAILS_ENV=test bundle exec rake pact:verify
   - stage: Docker
     script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
