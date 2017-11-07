@@ -22,7 +22,8 @@ module Rest
     end
 
     def search
-      @books = Book.where('title LIKE ?', "%#{params[:keyword]}%")
+      @books = Book.order(:title)
+                   .where('title LIKE ?', "%#{params[:keyword]}%")
       render_books
     end
 
