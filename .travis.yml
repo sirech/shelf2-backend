@@ -4,22 +4,30 @@ services:
 language: ruby
 bundler_args: "--without production"
 cache: bundler
+stages:
+  - lint
+  - test
+  - pact
+  - name: docker
+    if: branch = master
+  - name: deploy
+    if: branch = master
 jobs:
   include:
-  - stage: Lint
+  - stage: lint
     script: bundle exec rubocop -c .rubocop.yml
-  - stage: Test
+  - stage: test
     before_script: RAILS_ENV=test bundle exec rails db:create
     script: bundle exec rake spec
-  - stage: Pact
+  - stage: pact
     before_script: RAILS_ENV=test bundle exec rails db:create
     script: RAILS_ENV=test bundle exec rake pact:verify
-  - stage: Docker
+  - stage: docker
     script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
     - docker build . --tag $DOCKER_REGISTRY/$REPO
     - docker push $DOCKER_REGISTRY/$REPO
-  - stage: Deploy
+  - stage: deploy
     before_deploy:
     - openssl aes-256-cbc -K $encrypted_f01d31c5d2d1_key -iv $encrypted_f01d31c5d2d1_iv
       -in deploy_rsa.enc -out deploy_rsa -d
@@ -28,7 +36,7 @@ jobs:
     deploy:
       provider: script
       skip_cleanup: true
-      script: ssh -i deploy_rsa $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update"
+      script: ssh -i deploy_rsa $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update shelf2-backend"
 env:
   global:
   - secure: 16NxzuG73q/aCw0yvfujVlpVcJ0F+ol3Zl3x5vHJ/ep1ii7k3Fv9cOBpUgoh/UgbqEM/IcvSGuHxIKvA1x+B7pCEgf0cYarS8l/kUqJ89rcW138EoLuSDaA+wcuvvharuH8pEMiXdyd+zxLhfXnUjGLeTzJ6ubgjxIMdSed2cyx1jCnGqWlc74fYyxulBfWLD4jrA5zqpxnZFw7ak3IOn5+g2Lz4Jy6SxryycoqA9I9cFQCQCFZ4T5vWx9z4yddOud4705Mg6OXI0kFH4j4PwZLIhp3dgL3+8INYr/DLas4FkgnlDyJVcTPhmnSTqpAI/JOJLSoOO/B8rifAQor4TXFS33Vzwn4qMIuOKp7QFJj/PkzgUdYDigt544LcVCPRDRfZOA/joL2+Wpd6RfYkv+AKapjR7Mn9kzmNTeWDwBiZnuryueZtp7kUwhYoZDNjN3uADxyOAIe1k/9I/9uipEl6VWx8xoV5INQwdRwLvXHj4VYWGTqalqG/meWAqhs4I6hxle+MFL/zdlCuQW1vdAMVht9/bcNmClZyOQFU9Ub3jL2EBPp/P8fD4UtU0GstYalaFFW/WKQLSWYxYVrkLB1/M7VPHZUjqW5KEkFNO8gHcXSaMgbWIp5/q3UURKNe5EBqP4Ym7pNcu6gTxSWJIWqW6GLTxJ6din+X6L001G8=
