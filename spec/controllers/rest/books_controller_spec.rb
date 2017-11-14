@@ -106,14 +106,14 @@ describe Rest::BooksController, type: :controller do
 
     let(:book) { build(:book) }
 
-    context 'unauthorized' do
+    context 'when unauthorized' do
       it 'returns a 401' do
         subject
         expect(response.status).to eq 401
       end
     end
 
-    context 'authorized' do
+    context 'when authorized' do
       let(:headers) { { 'Authorization' => "Bearer #{token}" } }
       let(:token) { ::JsonWebToken.encode(user_id: user.id) }
       let!(:user) { create(:user) }

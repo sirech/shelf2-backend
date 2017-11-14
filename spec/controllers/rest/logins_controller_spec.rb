@@ -9,7 +9,7 @@ describe Rest::LoginsController, type: :controller do
     let!(:user) { create(:user, password: password) }
     let(:password) { 'trololol' }
 
-    context 'successful' do
+    context 'when successful' do
       it 'returns 200' do
         subject
         expect(response).to be_ok
@@ -21,7 +21,7 @@ describe Rest::LoginsController, type: :controller do
       end
     end
 
-    context 'failed' do
+    context 'when failed' do
       before { User.delete_all }
 
       it 'returns 401' do
