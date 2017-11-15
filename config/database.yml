@@ -14,8 +14,10 @@ test:
   <<: *default
   database: shelf2_test
 
+<% if Rails.env.production? %>
 production:
   <<: *default
   database: shelf2_production
-  host: <%= ENV['DB_HOST'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= Diplomat::Kv.get('shelf2-backend/db_host') %>
+  password: <%= Diplomat::Kv.get('shelf2-backend/db_password') %>
+<% end %>
