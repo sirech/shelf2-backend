@@ -16,7 +16,6 @@ gem 'bcrypt'
 gem 'jwt'
 gem 'simple_command'
 
-gem 'diplomat'
 gem 'logstasher'
 
 group :development, :test do
