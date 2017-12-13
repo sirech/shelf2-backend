@@ -45,3 +45,4 @@ Pact.provider_states_for 'React' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -52,6 +52,7 @@ def books
     }
   ]
 end
+# rubocop:enable Metrics/MethodLength
 
 def years
   [
