@@ -130,7 +130,7 @@ describe Rest::BooksController, type: :controller do
       it 'creates a new book' do
         expect do
           subject
-        end.to change { Book.count }.by(1)
+        end.to change(Book, :count).by(1)
       end
 
       it 'returns a 422 if the book is invalid' do
