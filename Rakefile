@@ -5,3 +5,11 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 require 'pact/tasks'
+require 'rspec/core/rake_task'
+
+namespace :spec do
+  desc "Run infrastructure tests"
+  RSpec::Core::RakeTask.new(:infra) do |t|
+    t.pattern = "spec/infra/*_spec.rb"
+  end
+end

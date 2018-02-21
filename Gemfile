@@ -44,6 +44,10 @@ group :test do
   gem 'database_cleaner', require: false
   gem 'rspec-rails'
   gem 'pact'
+
+  gem 'docker-api'
+  gem 'rspec-wait'
+  gem 'serverspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

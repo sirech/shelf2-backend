@@ -1,7 +1,5 @@
 FROM ruby:2.4.2-alpine
 
-# RUN apt-get update && apt-get install -qq -y build-essential libossp-uuid-dev libmysqlclient-dev --fix-missing --no-install-recommends
-
 ENV RAILS_ROOT=/app \
     RAILS_ENV=production
 
@@ -14,5 +12,12 @@ RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzd
     && bundle install --without development test \
     && apk del build-base \
     && rm -Rf /usr/lib/libmysqld*
+
+RUN addgroup -S app && \
+    adduser -G app -SHD -h "$RAILS_ROOT" && \
+    chown -R app:app "$RAILS_ROOT"
+USER app
+
+EXPOSE 3000
 
 CMD exec rails s -b 0.0.0.0

@@ -18,6 +18,10 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Max: 100
 
+RSpec/DescribeClass:
+  Exclude:
+    - spec/infra/*
+
 RSpec/ExampleLength:
   Max: 10
 
