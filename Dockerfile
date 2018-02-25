@@ -14,10 +14,10 @@ RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzd
     && rm -Rf /usr/lib/libmysqld*
 
 RUN addgroup -S app && \
-    adduser -G app -SHD -h "$RAILS_ROOT" && \
+    adduser -G app -SHD -h "$RAILS_ROOT" app && \
     chown -R app:app "$RAILS_ROOT"
 USER app
 
 EXPOSE 3000
 
-CMD exec rails s -b 0.0.0.0
+CMD ["rails", "s", "-b", "0.0.0.0"]

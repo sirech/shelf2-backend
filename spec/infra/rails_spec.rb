@@ -14,11 +14,9 @@ describe 'Docker Image' do
     its(:stdout) { is_expected.to match(/2.4.2/) }
   end
 
-  describe process('ruby') do
+  describe process('puma') do
     it { is_expected.to be_running }
-
     its(:user) { is_expected.to eq('app') }
-    its(:args) { is_expected.to match(/rails s -b 0.0.0.0/) }
   end
 
   it { wait_for(port(3000)).to be_listening.with('tcp') }
