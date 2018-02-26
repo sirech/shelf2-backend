@@ -21,3 +21,7 @@
 
 /coverage
 /reports
+
+# Hawkeye output
+output.json
+summary.json

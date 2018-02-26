@@ -8,6 +8,7 @@ stages:
   - lint
   - test
   - pact
+  - security
   - name: docker
     if: branch = master
   - name: deploy
@@ -23,6 +24,8 @@ jobs:
   - stage: pact
     before_script: RAILS_ENV=test bundle exec rails db:create
     script: RAILS_ENV=test bundle exec rake pact:verify
+  - stage: security
+    script: docker run --rm -v $PWD:/target stono/hawkeye
   - stage: docker
     script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
