@@ -14,8 +14,6 @@ Pact.service_provider 'Backend' do
     pact_uri 'https://raw.githubusercontent.com/sirech/shelf2-frontend/master/pacts/react-backend.json'
   end
 end
-
-# rubocop:disable Metrics/BlockLength
 Pact.provider_states_for 'React' do
   provider_state 'i have some books' do
     set_up do
@@ -42,7 +40,9 @@ Pact.provider_states_for 'React' do
 
   provider_state 'i am logged in' do
     set_up do
+      # rubocop:disable Metrics/LineLength
       can_authenticate_with('eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.xPUpABeLDWit5v187rP_x8dgTthuFjrMseKuPOK45NM')
+      # rubocop:enable Metrics/LineLength
     end
   end
 end
