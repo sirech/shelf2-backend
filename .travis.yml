@@ -7,7 +7,6 @@ cache: bundler
 stages:
   - lint
   - test
-  - pact
   - security
   - name: docker
     if: branch = master
@@ -21,8 +20,7 @@ jobs:
     before_script: RAILS_ENV=test bundle exec rails db:create
     script: bundle exec rake spec:all
   - script: bundle exec rake spec:infra
-  - stage: pact
-    before_script: RAILS_ENV=test bundle exec rails db:create
+  - before_script: RAILS_ENV=test bundle exec rails db:create
     script: RAILS_ENV=test bundle exec rake pact:verify
   - stage: security
     script: docker run --rm -v $PWD:/target stono/hawkeye

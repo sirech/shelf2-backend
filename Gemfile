@@ -12,9 +12,8 @@ gem 'puma', '~> 3.7'
 
 gem 'mysql2'
 
-gem 'bcrypt'
-gem 'jwt'
 gem 'simple_command'
+gem 'google-api-client'
 
 gem 'logstasher'
 
@@ -47,7 +46,7 @@ group :test do
 
   gem 'docker-api'
   gem 'rspec-wait'
-  gem 'serverspec'
+  gem 'serverspec', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

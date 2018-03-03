@@ -1,4 +1,4 @@
-require 'json_web_token'
+require 'google/apis/oauth2_v2'
 
 class AuthenticateRequest
   prepend SimpleCommand
@@ -8,25 +8,40 @@ class AuthenticateRequest
   end
 
   def call
-    user
+    valid_user?
   end
 
   private
 
   attr_reader :headers
 
-  def user
-    @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-
-    errors.add(:token, 'Invalid token') if @user.nil?
-    @user
+  def valid_user?
+    %w[sirech].include?(email).tap do |is_valid|
+      errors.add(:token, 'Invalid user') unless is_valid
+    end
   end
 
-  def decoded_auth_token
-    @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
+  def email
+    email = token_info&.email
+    email ? email.split('@').first : nil
   end
 
-  def http_auth_header
+  def token_info
+    return @token_info if defined?(@token_info)
+
+    @token_info = begin
+                    oauth2.tokeninfo(access_token: token)
+                  rescue Google::Apis::ClientError
+                    errors.add(:token, 'Could not verify identity')
+                    nil
+                  end
+  end
+
+  def oauth2
+    Google::Apis::Oauth2V2::Oauth2Service.new
+  end
+
+  def token
     return headers['Authorization'].split(' ').last if headers['Authorization'].present?
 
     errors.add :token, 'Missing token'

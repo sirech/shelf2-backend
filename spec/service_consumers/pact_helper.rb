@@ -2,9 +2,11 @@ require_relative '../rails_helper'
 require 'pact/provider/rspec'
 
 require_relative 'books'
+require_relative '../support/auth_helper'
 
 Pact.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include AuthHelper
 end
 
 Pact.service_provider 'Backend' do
@@ -35,13 +37,12 @@ Pact.provider_states_for 'React' do
 
   provider_state 'i am not logged in' do
     set_up do
-      create(:user, id: 1, name: 'Tronald', password: 'Dumpinator')
     end
   end
 
   provider_state 'i am logged in' do
     set_up do
-      create(:user, id: 1, name: 'Tronald', password: 'Dumpinator')
+      can_authenticate_with('eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.xPUpABeLDWit5v187rP_x8dgTthuFjrMseKuPOK45NM')
     end
   end
 end

@@ -115,11 +115,11 @@ describe Rest::BooksController, type: :controller do
 
     context 'when authorized' do
       let(:headers) { { 'Authorization' => "Bearer #{token}" } }
-      let(:token) { ::JsonWebToken.encode(user_id: user.id) }
-      let!(:user) { create(:user) }
+      let(:token) { 'truuump' }
 
       before do
         request.headers.merge! headers
+        can_authenticate_with(token)
       end
 
       it 'returns a 201' do
@@ -135,7 +135,7 @@ describe Rest::BooksController, type: :controller do
 
       it 'returns a 422 if the book is invalid' do
         post :create, params: { format: :json, book: { name: '' } }
-        expect(response.status).to be 422
+        expect(response.status).to eq 422
       end
     end
   end
