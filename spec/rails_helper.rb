@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] = 'test' unless ENV['RAILS_ENV']
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 require 'spec_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
