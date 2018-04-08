@@ -6,11 +6,11 @@ Rails.application.routes.draw do
         get 'years'
       end
     end
-  end
 
-  resource :system, only: %i[] do
-    collection do
-      get 'healthcheck'
+    resource :system, only: %i[] do
+      collection do
+        get 'healthcheck'
+      end
     end
   end
 end

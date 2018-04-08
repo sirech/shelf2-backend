@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SystemsController, type: :controller do
+describe Rest::SystemsController, type: :controller do
   render_views
 
   describe '#healthcheck' do
