@@ -6,7 +6,11 @@ Rails.application.routes.draw do
         get 'years'
       end
     end
+  end
 
-    resource :login, only: %i[create]
+  resource :system, only: %i[] do
+    collection do
+      get 'healthcheck'
+    end
   end
 end
