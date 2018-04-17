@@ -9,11 +9,11 @@ stages:
 - test
 - security
 - name: docker
-  if: branch = master
+  if: branch = master AND env(TRAVIS_PULL_REQUEST) = false
 - name: deploy
-  if: branch = master
+  if: branch = master AND env(TRAVIS_PULL_REQUEST) = false
 - name: healthcheck
-  if: branch = master
+  if: branch = master AND env(TRAVIS_PULL_REQUEST) = false
 jobs:
   include:
   - stage: lint
