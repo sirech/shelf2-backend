@@ -18,7 +18,7 @@ Pact.provider_states_for 'React' do
   provider_state 'i have some books' do
     set_up do
       books.each do |book|
-        create(:book, **book)
+        create(:book, book)
       end
     end
   end
