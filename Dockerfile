@@ -6,7 +6,7 @@ ENV RAILS_ROOT=/app \
 WORKDIR $RAILS_ROOT
 COPY . .
 
-RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzdata \
+RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzdata dumb-init \
     && rm -rf /var/cache/apk/* \
     && mkdir -p $RAILS_ROOT/tmp/pids \
     && bundle install --without development test \
@@ -20,4 +20,5 @@ USER app
 
 EXPOSE 3000
 
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["rails", "s", "-b", "0.0.0.0"]
