@@ -136,7 +136,7 @@ GEM
     net-ssh (4.2.0)
     net-telnet (0.1.1)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     os (0.9.6)
     overcommit (0.45.0)
