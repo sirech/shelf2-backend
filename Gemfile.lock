@@ -142,7 +142,7 @@ GEM
     overcommit (0.45.0)
       childprocess (~> 0.6, >= 0.6.3)
       iniparse (~> 1.4)
-    pact (1.27.0)
+    pact (1.28.0)
       json (> 1.8.5)
       pact-mock_service (~> 2.0)
       pact-support (~> 1.4)
