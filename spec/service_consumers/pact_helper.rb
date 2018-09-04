@@ -14,6 +14,8 @@ Pact.service_provider 'Backend' do
     pact_uri 'https://raw.githubusercontent.com/sirech/shelf2-frontend/master/pacts/react-backend.json'
   end
 end
+
+# rubocop:disable Metrics/BlockLength
 Pact.provider_states_for 'React' do
   provider_state 'i have some books' do
     set_up do
@@ -38,6 +40,11 @@ Pact.provider_states_for 'React' do
     end
   end
 
+  provider_state 'i have an expired token' do
+    set_up do
+    end
+  end
+
   provider_state 'i am logged in' do
     set_up do
       # rubocop:disable Metrics/LineLength
@@ -46,3 +53,4 @@ Pact.provider_states_for 'React' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
