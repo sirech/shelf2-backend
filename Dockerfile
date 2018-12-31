@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-alpine
+FROM ruby:2.6-alpine
 
 ENV RAILS_ROOT=/app \
     RAILS_ENV=production
