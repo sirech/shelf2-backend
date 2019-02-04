@@ -3,7 +3,7 @@ require_relative 'infra_helper'
 describe 'Docker Image' do
   describe file('/etc/alpine-release') do
     it { is_expected.to be_file }
-    its(:content) { is_expected.to match(/3.8.2/) }
+    its(:content) { is_expected.to match(/3.9.0/) }
   end
 
   describe file('/app') do
