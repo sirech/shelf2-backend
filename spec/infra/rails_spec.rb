@@ -11,7 +11,7 @@ describe 'Docker Image' do
   end
 
   describe command('ruby --version') do
-    its(:stdout) { is_expected.to match(/2.5.3/) }
+    its(:stdout) { is_expected.to match(/2.6.1/) }
   end
 
   describe process('puma') do
