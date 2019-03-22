@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+
+    working_directory: ~/app
+
+    docker:
+      - image: circleci/ruby:2.6.1
+
+    steps:
+
+      - checkout
+      - run: ./go linter
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - build
