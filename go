@@ -24,6 +24,10 @@ goal_test-pact() {
   bundle exec rake pact:verify
 }
 
+goal_test-container() {
+  bundle exec rake spec:infra
+}
+
 goal_help() {
   echo "usage: $0 <goal>
 
@@ -39,6 +43,7 @@ outdated                 -- Check which dependencies are outdated
 
 test-unit                -- Run unit tests
 test-pact                -- Test the pact
+test-container           -- Test the container
 "
   exit 1
 }

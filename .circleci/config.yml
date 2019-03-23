@@ -34,8 +34,31 @@ jobs:
       - run: ./go test-unit
       - run: ./go test-pact
 
+  docker:
+
+    docker:
+      - image: sirech/dind-ruby:2.6.1
+
+    steps:
+
+      - checkout
+      - setup_remote_docker
+      - ./go test-container
+      - run:
+          name: Publish docker image
+          command: |
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER $DOCKER_REGISTRY --password-stdin
+            docker build . --tag $DOCKER_REGISTRY/shelf2-backend
+            docker push $DOCKER_REGISTRY/shelf2-backend
+
 workflows:
   version: 2
   pipeline:
     jobs:
       - build
+      - docker:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
