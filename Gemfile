@@ -5,17 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rake'
 gem 'rails', '~> 5.2.1'
 
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
-
-gem 'mysql2'
-
 gem 'simple_command'
-gem 'google-api-client'
 
-gem 'logstasher'
+group :ops do
+  # Use Puma as the app server
+  gem 'puma', '~> 3.7'
+
+  gem 'mysql2'
+  gem 'google-api-client'
+  gem 'logstasher'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,10 +45,7 @@ group :test do
   gem 'database_cleaner', require: false
   gem 'rspec-rails'
   gem 'pact'
-end
 
-group :serverspec do
-  gem 'rake'
   gem 'docker-api'
   gem 'rspec-wait'
   gem 'serverspec', require: false
