@@ -64,9 +64,6 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.logstasher.enabled = true
-  config.logstasher.logger_path = STDOUT
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

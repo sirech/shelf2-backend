@@ -16,7 +16,6 @@ group :ops do
 
   gem 'mysql2'
   gem 'google-api-client'
-  gem 'logstasher'
 end
 
 group :development, :test do
