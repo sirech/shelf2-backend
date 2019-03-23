@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
-      - run: bin/rails db:schema:load
+      - run: bin/rails db:create db:schema:load
       - run: ./go test-unit
       - run: ./go test-pact
 
