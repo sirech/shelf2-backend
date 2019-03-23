@@ -43,7 +43,7 @@ jobs:
 
       - checkout
       - setup_remote_docker
-      - ./go test-container
+      - run: ./go test-container
       - run:
           name: Publish docker image
           command: |
