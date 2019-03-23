@@ -46,6 +46,7 @@ group :test do
 end
 
 group :serverspec do
+  gem 'rake'
   gem 'docker-api'
   gem 'rspec-wait'
   gem 'serverspec', require: false
