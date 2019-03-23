@@ -43,7 +43,9 @@ group :test do
   gem 'database_cleaner', require: false
   gem 'rspec-rails'
   gem 'pact'
+end
 
+group :serverspec do
   gem 'docker-api'
   gem 'rspec-wait'
   gem 'serverspec', require: false
