@@ -10,6 +10,10 @@ jobs:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: "test"
 
     steps:
 
@@ -22,6 +26,13 @@ jobs:
           paths:
             - vendor/bundle
       - run: ./go linter
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: bin/rails db:schema:load
+      - run: ./go test-unit
+      - run: ./go test-pact
 
 workflows:
   version: 2

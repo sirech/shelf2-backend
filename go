@@ -20,6 +20,10 @@ goal_test-unit() {
   bundle exec rake spec:all
 }
 
+goal_test-pact() {
+  bundle exec rake pact:verify
+}
+
 goal_help() {
   echo "usage: $0 <goal>
 
@@ -34,6 +38,7 @@ run                      -- Start the backend application
 outdated                 -- Check which dependencies are outdated
 
 test-unit                -- Run unit tests
+test-pact                -- Test the pact
 "
   exit 1
 }
