@@ -58,6 +58,23 @@ jobs:
             docker build . --tag $DOCKER_REGISTRY/shelf2-backend
             docker push $DOCKER_REGISTRY/shelf2-backend
 
+  deploy:
+
+    docker:
+      - image: circleci/buildpack-deps:stretch
+
+    steps:
+      - add_ssh_keys:
+      - run: ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sh ${DEPLOY_PATH}/bin/update shelf2-backend
+
+  healthcheck:
+
+    docker:
+      - image: circleci/buildpack-deps:stretch
+
+    steps:
+      - run: curl --connect-timeout 60 -s -f -o /dev/null "${SITE_URL}/rest/system/healthcheck"
+
 workflows:
   version: 2
   pipeline:
@@ -69,3 +86,9 @@ workflows:
               only: master
           requires:
             - build
+      - deploy:
+          requires:
+            - docker
+      - healthcheck:
+          requires:
+            - deploy
