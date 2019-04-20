@@ -15,7 +15,7 @@ group :ops do
   gem 'puma', '~> 3.7'
 
   gem 'mysql2'
-  gem 'google-api-client'
+  gem 'jwt'
 end
 
 group :development, :test do

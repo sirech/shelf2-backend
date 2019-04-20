@@ -1,4 +1,4 @@
-require 'google/apis/oauth2_v2'
+require 'json_web_token'
 
 class AuthenticateRequest
   prepend SimpleCommand
@@ -8,37 +8,25 @@ class AuthenticateRequest
   end
 
   def call
-    valid_user?
+    verify
   end
 
   private
 
   attr_reader :headers
 
-  def valid_user?
-    %w[sirech].include?(email).tap do |is_valid|
-      errors.add(:token, 'Invalid user') unless is_valid
+  def verify
+    payload, = ::JsonWebToken.verify(token)
+    scopes(payload).include?('create:books').tap do |has_scope|
+      errors.add(:token, 'Missing scope') unless has_scope
     end
+  rescue JWT::DecodeError => e
+    errors.add(:token, 'Cannot decode JWT', e)
+    false
   end
 
-  def email
-    email = token_info&.email
-    email ? email.split('@').first : nil
-  end
-
-  def token_info
-    return @token_info if defined?(@token_info)
-
-    @token_info = begin
-                    oauth2.tokeninfo(access_token: token)
-                  rescue Google::Apis::ClientError
-                    errors.add(:token, 'Could not verify identity')
-                    nil
-                  end
-  end
-
-  def oauth2
-    Google::Apis::Oauth2V2::Oauth2Service.new
+  def scopes(payload)
+    payload['scope'].split(' ')
   end
 
   def token

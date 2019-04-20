@@ -1,11 +1,6 @@
-require 'ostruct'
-require 'google/apis/oauth2_v2'
-
 module AuthHelper
-  def can_authenticate_with(token)
-    allow_any_instance_of(::Google::Apis::Oauth2V2::Oauth2Service).to receive(:tokeninfo)
-      .with(access_token: token)
-      .and_return(OpenStruct.new(email: 'sirech@yahoo.com'))
+  def can_authenticate_with(_token)
+    allow_any_instance_of(AuthenticateRequest).to receive(:verify).and_return(true)
   end
 end
 
