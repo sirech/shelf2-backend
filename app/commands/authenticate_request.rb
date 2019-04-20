@@ -16,7 +16,7 @@ class AuthenticateRequest
   attr_reader :headers
 
   def verify
-    payload, = ::JsonWebToken.verify(token)
+    payload, = JsonWebToken.verify(token)
     scopes(payload).include?('create:books').tap do |has_scope|
       errors.add(:token, 'Missing scope') unless has_scope
     end
