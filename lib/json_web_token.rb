@@ -1,4 +1,5 @@
 require 'jwt'
+require 'net/http'
 
 class JsonWebToken
   class << self
