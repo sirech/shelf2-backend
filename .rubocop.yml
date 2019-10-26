@@ -8,6 +8,7 @@ AllCops:
     - Gemfile
     - Rakefile
     - config/initializers/*.rb
+    - bin/*
 
 Documentation:
   Enabled: false
