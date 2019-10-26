@@ -7,6 +7,7 @@ end
 
 gem 'rake'
 gem 'rails', '~> 5.2.1'
+gem 'bootsnap', require: false
 
 gem 'simple_command'
 
