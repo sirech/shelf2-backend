@@ -1,7 +1,8 @@
 FROM ruby:2.6.3-alpine
 
 ENV RAILS_ROOT=/app \
-    RAILS_ENV=production
+  RAILS_ENV=production \
+  SECRET_KEY_BASE=123
 
 WORKDIR $RAILS_ROOT
 COPY . .
