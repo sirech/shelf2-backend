@@ -16,7 +16,7 @@ Documentation:
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
 
 RSpec/AnyInstance:
