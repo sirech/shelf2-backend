@@ -17,15 +17,15 @@ goal_linter() {
 }
 
 goal_test-unit() {
-  bundle exec rake spec:all
+  bin/rake spec:all
 }
 
 goal_test-pact() {
-  bundle exec rake pact:verify
+  bin/rake pact:verify
 }
 
 goal_test-container() {
-  bundle exec rake spec:infra
+  bin/rake spec:infra
 }
 
 goal_help() {
