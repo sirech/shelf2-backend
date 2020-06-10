@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/app
 
     docker:
-      - image: circleci/ruby:2.6.3
+      - image: cimg/ruby:2.6.3
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -65,7 +65,7 @@ jobs:
   deploy:
 
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: cimg/base:stable
 
     steps:
       - add_ssh_keys:
@@ -74,7 +74,7 @@ jobs:
   healthcheck:
 
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: cimg/base:stable
 
     steps:
       - run: curl --connect-timeout 60 -s -f -o /dev/null "${SITE_URL}/rest/system/healthcheck"
