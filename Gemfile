@@ -13,7 +13,7 @@ gem 'simple_command'
 
 group :ops do
   # Use Puma as the app server
-  gem 'puma', '~> 4.3'
+  gem 'puma', '~> 5.0'
 
   gem 'mysql2'
   gem 'jwt'
