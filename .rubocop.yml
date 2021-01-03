@@ -9,12 +9,13 @@ AllCops:
     - Rakefile
     - config/initializers/*.rb
     - bin/*
+  NewCops: enable
 
 Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context']
+  IgnoredMethods: ['describe', 'context']
 
 Layout/LineLength:
   Max: 100

@@ -26,11 +26,11 @@ class AuthenticateRequest
   end
 
   def scopes(payload)
-    payload['scope'].split(' ')
+    payload['scope'].split
   end
 
   def token
-    return headers['Authorization'].split(' ').last if headers['Authorization'].present?
+    return headers['Authorization'].split.last if headers['Authorization'].present?
 
     errors.add :token, 'Missing token'
     nil

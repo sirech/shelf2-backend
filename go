@@ -13,7 +13,7 @@ goal_outdated() {
 }
 
 goal_linter() {
-  bundle exec rubocop -c .rubocop.yml
+  bundle exec rubocop
 }
 
 goal_test-unit() {

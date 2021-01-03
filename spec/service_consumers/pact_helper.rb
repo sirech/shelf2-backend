@@ -36,20 +36,24 @@ Pact.provider_states_for 'React' do
   end
 
   provider_state 'i am not logged in' do
+    # rubocop:disable Lint/EmptyBlock
     set_up do
     end
+    # rubocop:enable Lint/EmptyBlock
   end
 
   provider_state 'i have an expired token' do
+    # rubocop:disable Lint/EmptyBlock
     set_up do
     end
+    # rubocop:enable Lint/EmptyBlock
   end
 
   provider_state 'i am logged in' do
     set_up do
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       can_authenticate_with('eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.xPUpABeLDWit5v187rP_x8dgTthuFjrMseKuPOK45NM')
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
     end
   end
 end
