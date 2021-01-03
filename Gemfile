@@ -36,6 +36,8 @@ group :development do
   # Linters
   gem 'overcommit'
   gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rake'
   gem 'rubocop-rspec'
 
   gem 'coveralls', require: false
