@@ -85,12 +85,16 @@ workflows:
     jobs:
       - build
       - docker:
+          context:
+            - quay-context
           filters:
             branches:
               only: master
           requires:
             - build
       - deploy:
+          context:
+            - erza
           requires:
             - docker
       - healthcheck:
