@@ -3,7 +3,7 @@ require_relative 'infra_helper'
 describe 'Docker Image' do
   describe file('/etc/alpine-release') do
     it { is_expected.to be_file }
-    its(:content) { is_expected.to match(/3.12/) }
+    its(:content) { is_expected.to match(/3.13/) }
   end
 
   describe file('/app') do
@@ -11,7 +11,7 @@ describe 'Docker Image' do
   end
 
   describe command('ruby --version') do
-    its(:stdout) { is_expected.to match(/2.7.1/) }
+    its(:stdout) { is_expected.to match(/3.0.1/) }
   end
 
   describe process('puma') do
