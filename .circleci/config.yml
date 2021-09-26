@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/app
 
     docker:
-      - image: circleci/ruby:2.7.1
+      - image: circleci/ruby:3.0.1
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -37,7 +37,7 @@ jobs:
   docker:
 
     docker:
-      - image: sirech/dind-ruby:2.7.1
+      - image: sirech/dind-ruby:3.0.1
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
