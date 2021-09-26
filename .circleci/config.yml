@@ -46,7 +46,8 @@ jobs:
     steps:
 
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.7
       - restore_cache:
           key: bundle-2-{{ checksum "Gemfile.lock" }}
       - run: bundle check || bundle install --without ops development
