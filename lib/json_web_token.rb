@@ -18,12 +18,12 @@ class JsonWebToken
     def jwks_hash
       jwks_raw = Net::HTTP.get URI('https://hceris.eu.auth0.com/.well-known/jwks.json')
       jwks_keys = Array(JSON.parse(jwks_raw)['keys'])
-      jwks_keys.map do |k|
+      jwks_keys.to_h do |k|
         [
           k['kid'],
           OpenSSL::X509::Certificate.new(Base64.decode64(k['x5c'].first)).public_key
         ]
-      end.to_h
+      end
     end
   end
 end

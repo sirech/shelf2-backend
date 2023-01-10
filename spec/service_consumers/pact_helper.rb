@@ -15,7 +15,6 @@ Pact.service_provider 'Backend' do
   end
 end
 
-# rubocop:disable Metrics/BlockLength
 Pact.provider_states_for 'React' do
   provider_state 'i have some books' do
     set_up do
@@ -30,7 +29,7 @@ Pact.provider_states_for 'React' do
       years.each do |h|
         year = h[:year]
         count = h[:count]
-        create_list(:book, count, year: year)
+        create_list(:book, count, year:)
       end
     end
   end
@@ -57,4 +56,3 @@ Pact.provider_states_for 'React' do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

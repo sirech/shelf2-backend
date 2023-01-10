@@ -29,7 +29,7 @@ module Rest
 
     def years
       @years = Book.group(:year).count.sort
-      render json: @years.map { |year, count| { year: year, count: count } }
+      render json: @years.map { |year, count| { year:, count: } }
     end
 
     private

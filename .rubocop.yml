@@ -39,5 +39,9 @@ RSpec/MultipleExpectations:
 RSpec/NamedSubject:
   Enabled: false
 
+RSpec/NoExpectationExample:
+  Exclude:
+    - spec/infra/*
+
 Style/FrozenStringLiteralComment:
   Enabled: false

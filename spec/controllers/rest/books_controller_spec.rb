@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Rest::BooksController, type: :controller do
+describe Rest::BooksController do
   render_views
 
   describe '#index' do
@@ -36,7 +36,7 @@ describe Rest::BooksController, type: :controller do
 
     it 'is sorted by title' do
       subject
-      titles = json_response!.map { |item| item['title'] }
+      titles = json_response!.pluck('title')
       expect(titles).to eq(titles.sort)
     end
 
@@ -48,7 +48,7 @@ describe Rest::BooksController, type: :controller do
   end
 
   describe '#search' do
-    subject { get :search, params: { keyword: keyword, format: :json } }
+    subject { get :search, params: { keyword:, format: :json } }
 
     let(:keyword) { 'book' }
 
@@ -109,7 +109,7 @@ describe Rest::BooksController, type: :controller do
     context 'when unauthorized' do
       it 'returns a 401' do
         subject
-        expect(response.status).to eq 401
+        expect(response).to have_http_status :unauthorized
       end
     end
 
@@ -124,7 +124,7 @@ describe Rest::BooksController, type: :controller do
 
       it 'returns a 201' do
         subject
-        expect(response.status).to eq 201
+        expect(response).to have_http_status :created
       end
 
       it 'creates a new book' do
@@ -135,7 +135,7 @@ describe Rest::BooksController, type: :controller do
 
       it 'returns a 422 if the book is invalid' do
         post :create, params: { format: :json, book: { name: '' } }
-        expect(response.status).to eq 422
+        expect(response).to have_http_status :unprocessable_entity
       end
     end
   end
