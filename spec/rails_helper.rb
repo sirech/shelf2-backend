@@ -9,6 +9,7 @@ require 'database_cleaner'
 require 'factory_girl_rails'
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
