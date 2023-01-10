@@ -1,4 +1,4 @@
-FROM ruby:3-alpine
+FROM ruby:3.2-alpine
 
 ENV RAILS_ROOT=/app \
   RAILS_ENV=production \
@@ -23,4 +23,4 @@ USER app
 EXPOSE 3000
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["rails", "s", "-b", "0.0.0.0"]
+CMD ["bin/rails", "s", "-b", "0.0.0.0"]
