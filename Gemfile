@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rake'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 7.0'
 gem 'bootsnap', require: false
 
 gem 'simple_command'
