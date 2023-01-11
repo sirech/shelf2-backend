@@ -55,3 +55,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# FIXME:
+# mail v2.8.0 shipped with faulty file permissions, see: https://github.com/mikel/mail/issues/1489.
+# Remove the following line once a fixed release is available:
+gem 'mail', '!= 2.8.0'
