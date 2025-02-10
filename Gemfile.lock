@@ -88,7 +88,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.3.3)
+    date (3.4.1)
     diff-lcs (1.5.0)
     docile (1.4.0)
     docker-api (2.2.0)
@@ -131,12 +131,12 @@ GEM
     msgpack (1.6.0)
     multi_json (1.15.0)
     mysql2 (0.5.4)
-    net-imap (0.3.4)
+    net-imap (0.3.8)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.1)
+    net-protocol (0.2.2)
       timeout
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
@@ -293,7 +293,7 @@ GEM
     term-ansicolor (1.7.1)
       tins (~> 1.0)
     thor (1.2.1)
-    timeout (0.3.1)
+    timeout (0.4.3)
     tins (1.32.1)
       sync
     tzinfo (2.0.5)
