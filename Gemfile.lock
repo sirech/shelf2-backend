@@ -144,7 +144,7 @@ GEM
       net-protocol
     net-ssh (7.2.0)
     net-telnet (0.2.0)
-    nio4r (2.5.8)
+    nio4r (2.7.5)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -320,6 +320,7 @@ DEPENDENCIES
   listen
   mail (!= 2.8.0)
   mysql2
+  nio4r (>= 2.6.0)
   overcommit
   pact
   pry-rails

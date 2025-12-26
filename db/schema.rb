@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2018_03_03_112039) do
-
-  create_table "books", charset: "utf8", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2018_03_03_112039) do
+  create_table "books", charset: "utf8mb3", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.integer "year", null: false
     t.integer "stars", default: 1
     t.integer "category", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
 end
