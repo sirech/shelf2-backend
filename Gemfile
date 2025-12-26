@@ -59,6 +59,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Fixing error with bundle install
 gem "nio4r", ">= 2.6.0"
 
+# Fixing CRL errors
+gem "openssl", "~> 3.3.1"
+
 # FIXME:
 # mail v2.8.0 shipped with faulty file permissions, see: https://github.com/mikel/mail/issues/1489.
 # Remove the following line once a fixed release is available:
