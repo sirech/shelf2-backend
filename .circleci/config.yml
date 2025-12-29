@@ -37,7 +37,7 @@ jobs:
   docker:
 
     docker:
-      - image: sirech/dind-ruby:2.7.1
+      - image: sirech/dind-ruby:3.2.9
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
