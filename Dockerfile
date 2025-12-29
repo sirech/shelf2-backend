@@ -8,7 +8,7 @@ WORKDIR $RAILS_ROOT
 COPY . .
 
 # hadolint ignore=DL3018
-RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzdata dumb-init \
+RUN apk add --update --no-cache build-base libxml2-dev libxslt-dev mysql-dev tzdata dumb-init yaml yaml-dev \
     && rm -rf /var/cache/apk/* \
     && mkdir -p $RAILS_ROOT/tmp/pids \
     && bundle install --without development test \
