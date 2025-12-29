@@ -19,4 +19,3 @@ production:
   database: shelf2_production
   host: <%= ENV['DB_HOST'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  ssl_mode: DISABLED
