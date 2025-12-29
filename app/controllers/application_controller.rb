@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   def render_invalid_record(errors)
     errors = errors.map { |field, message| { field:, message: } }
-    render json: errors.to_json, status: :unprocessable_entity
+    render json: errors.to_json, status: :unprocessable_content
   end
 
   def authenticate!

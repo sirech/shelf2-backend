@@ -3,7 +3,7 @@ Coveralls.wear!('rails')
 
 require 'rspec/mocks'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
 
 RSpec.configure do |config|
   config.pattern = '**/*_spec.rb'
