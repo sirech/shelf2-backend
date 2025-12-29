@@ -5,7 +5,7 @@ require_relative 'books'
 require_relative '../support/auth_helper'
 
 Pact.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include AuthHelper
 end
 

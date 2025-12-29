@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :book do
     title { Faker::Book.title }
     year { Faker::Number.between(from: 2010, to: 2017) }

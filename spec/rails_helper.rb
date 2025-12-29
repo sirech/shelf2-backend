@@ -6,11 +6,11 @@ ActiveRecord::Migration.maintain_test_schema!
 
 require 'rspec/rails'
 require 'database_cleaner'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
