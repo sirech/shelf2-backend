@@ -55,7 +55,7 @@ jobs:
           key: bundle-2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run: ./go test-container
+      - run: sh go test-container
       - run:
           name: Publish docker image
           command: |
