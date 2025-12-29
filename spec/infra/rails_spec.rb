@@ -19,5 +19,5 @@ describe 'Docker Image' do
     its(:user) { is_expected.to eq('app') }
   end
 
-  it { wait_for(port(3000)).to be_listening.with('tcp') }
+  it { wait_for { port(3000) }.to be_listening.with('tcp') }
 end
